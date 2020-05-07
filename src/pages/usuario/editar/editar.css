@@ -1,0 +1,10 @@
+.container{
+    text-align:center;
+    padding : 200px;
+ 
+}
+.usuario-update input{
+    margin:1px 15px;
+    text-align:center;
+    width: 50%;    
+} 
