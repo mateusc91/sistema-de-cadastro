@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './criar.css';
 import axios from 'axios'
-import { Link, Redirect } from 'react-router-dom';
+import {Redirect } from 'react-router-dom';
 import Button from 'react-bootstrap/Button'
 
 class CriarUsuario extends Component {

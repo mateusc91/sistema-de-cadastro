@@ -37,6 +37,10 @@ export default class Detalhes extends Component {
             //     })
     }
 
+    rotaEditar(){
+        <Redirect to="/editar" />;
+    }
+
     render() {
         const { usuario } = this.state;
         return usuario.map((usuario, index) => (
@@ -53,11 +57,11 @@ export default class Detalhes extends Component {
                     <Button className = "button-detalhes-page" variant="primary">Detalhes</Button>
                     </Link>
 
-                    <Link to={`/editar/${usuario.id}`}>
-                    <Button className = "button-detalhes-page" variant="warning">Alterar</Button>
-                    </Link>
+                   
+                    <Button onClick={() => this.rotaEditar()}className = "button-detalhes-page" variant="warning">Alterar</Button>
+                   
 
-                    <Link to={`/deletar/${usuario.id}`}>
+                    <Link to={`/${usuario.id}`}>
                     <Button className = "button-detalhes-page" variant="danger">Deletar</Button>
                     </Link>
    

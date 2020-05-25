@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './editar.css';
 import axios from 'axios'
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import Button from 'react-bootstrap/Button'
 
 export class EditarUsuario extends Component {
@@ -11,7 +11,7 @@ export class EditarUsuario extends Component {
 
         this.state = {
             id: "",
-            nome: "",
+            name: "",
             produto: "",
             valor: "",
             redirect: false
@@ -20,16 +20,41 @@ export class EditarUsuario extends Component {
 
 
     componentDidMount() {
-        const { id } = this.state
-        axios.put(`http://localhost:8080/api/v1/person/${id}`)
-            .then(response => {
-                console.log(response)
-                this.setState({ usuario: response.data })
-            })
-            .catch(error => {
-                console.log(error)
+        const personId = +this.props.match.params.id;
+        if(personId){
 
-            })
+        }
+        
+    }
+
+    
+    updatePerson = event => {
+        event.preventDefault();
+    
+    const person = {
+        id: this.state.id,
+        name: this.state.name,
+        pedido: this.state.pedido,
+        valor: this.state.valor,
+    };
+
+    axios.put('http://localhost:8080/api/v1/person', person)
+            .then(response => {
+                if(response.data != null){
+                    this.setState({"show":true});
+                    setTimeout(()=>this.setState({"show":false}),3000);
+                    //setTimeout(()=>this.setState({"show":false}),3000);
+
+                } else {
+                    this.setState({"show":false}),3000);
+                }
+            //     this.setState({ redirect: true })
+            //     console.log(response)
+            // })
+            // .catch(error => {
+            //     console.log(error)
+            // })
+    
     }
 
     changeHander = (e) => {
@@ -56,7 +81,7 @@ export class EditarUsuario extends Component {
         } else {
             return (
                 <div className="container">
-                    <form className="form" onSubmit={this.handleSubmit}>
+                    <form className="form" onSubmit={this.state.id ? this.updatePerson} id="">
                         <fieldset>
                             <legend>Atualizar Usuario</legend>
                             <div className="usuario-update">
